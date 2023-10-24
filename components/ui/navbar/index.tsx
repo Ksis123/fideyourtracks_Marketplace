@@ -24,7 +24,7 @@ export default function Navbar() {
         <Disclosure as="nav" className="bg-[#1b1919] drop-shadow-2xl">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto  "> 
+                    <div className="max-w-7xl mx-auto  ">
                         <div className="relative flex items-center justify-between h-20 ">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-[#5b392af3] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -43,7 +43,9 @@ export default function Navbar() {
                                         src="/images/logofyt2.png"
                                         alt="Workflow"
                                     />
-                                    <h1 className='text-4xl ml-3 font-bold drop-shadow-lg'>
+                                    <h1 className='text-3xl ml-3 font-bold drop-shadow-lg' onClick={() => {
+                                        window.location.href = "http://localhost:3000/"
+                                    }}>
                                         <b className='text-primary hover:text-[#ff983d]'> Fide</b><b className='text-[#f4efeb]'> yourtracks</b>
                                     </h1>
                                 </div>
