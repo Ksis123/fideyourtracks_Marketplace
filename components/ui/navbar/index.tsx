@@ -21,10 +21,10 @@ export default function Navbar() {
     const { network } = useNetwork();
 
     return (
-        <Disclosure as="nav" className="bg-[#1b1919f3] drop-shadow-2xl">
+        <Disclosure as="nav" className="bg-[#1b1919] drop-shadow-2xl">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto  "> 
                         <div className="relative flex items-center justify-between h-20 ">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-[#5b392af3] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -36,14 +36,14 @@ export default function Navbar() {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                            <div className="flex-1 items-center justify-center">
                                 <div className="pl-[12rem]flex-shrink-0 flex items-center font-bold">
                                     <img
                                         className="hidden lg:block h-10 w-auto"
                                         src="/images/logofyt2.png"
                                         alt="Workflow"
                                     />
-                                    <h1 className='text-3xl ml-7 font-bold drop-shadow-lg'>
+                                    <h1 className='text-4xl ml-3 font-bold drop-shadow-lg'>
                                         <b className='text-primary hover:text-[#ff983d]'> Fide</b><b className='text-[#f4efeb]'> yourtracks</b>
                                     </h1>
                                 </div>

@@ -13,3 +13,28 @@
   border-color: var(--toastify-spinner-color-empty-area) !important;
   border-right-color: var(--toastify-spinner-color) !important;
 }
+
+.them {
+  background-image: linear-gradient(40deg, #413636 40%, #3f3125 );
+  width: 100vw;
+  height: 100vh;
+
+}
+
+.button{ 
+  font-size: 20px;
+  cursor: pointer;
+  transition:0.1s ease-in-out;
+  background-image: linear-gradient(225deg, #DF554F 0%, #EB9F19 60%,
+  #F49B4E 100%);    
+  box-shadow: 0 6px 24px #806d5e34;
+  padding: 8px 40px;
+  border-radius: 15px;
+}
+
+.button:hover{
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px #93795e4b;
+  border-radius: 15px;
+  transition: 0.3s ease-in-out;
+}

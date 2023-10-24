@@ -145,7 +145,7 @@ const NftCreate: NextPage = () => {
                 <div className="py-4">
                     {!nftURI &&
                         <div className="flex">
-                            <div className="mr-2 font-bold underline">Do you have meta data already?</div>
+                            <div className="mr-2 font-bold  text-[#d8cbcb]">Do you have meta data already ?</div>
                             <Switch
                                 checked={hasURI}
                                 onChange={() => setHasURI(!hasURI)}
@@ -166,8 +166,8 @@ const NftCreate: NextPage = () => {
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                         <div className="md:col-span-1">
                             <div className="px-4 sm:px-0">
-                                <h3 className="text-lg font-medium leading-6 text-gray-900">List NFT</h3>
-                                <p className="mt-1 text-sm text-gray-600">
+                                <h3 className="text-lg font-medium leading-6 text-active">List NFT</h3>
+                                <p className="mt-1 text-lm text-[#ffffff]">
                                     This information will be displayed publicly so be careful what you share.
                                 </p>
                             </div>
@@ -176,7 +176,7 @@ const NftCreate: NextPage = () => {
                             <form>
                                 <div className="shadow sm:rounded-md sm:overflow-hidden">
                                     {hasURI &&
-                                        <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+                                        <div className="px-4 py-5 bg-[#ffffff] space-y-6 sm:p-6">
                                             <div>
                                                 <label htmlFor="uri" className="block text-sm font-medium text-gray-700">
                                                     URI Link
@@ -229,7 +229,7 @@ const NftCreate: NextPage = () => {
                                             type="button"
                                             onClick={createNft}
 
-                                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-active focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                                            className="button inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-active focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                                         >
                                             List
                                         </button>
@@ -242,8 +242,8 @@ const NftCreate: NextPage = () => {
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                         <div className="md:col-span-1">
                             <div className="px-4 sm:px-0">
-                                <h3 className="text-lg font-medium leading-6 text-gray-900">Create AudioNFT Metadata</h3>
-                                <p className="mt-1 text-sm text-gray-600">
+                                <h3 className="text-lg font-medium leading-6 text-active">Upload Metadata</h3>
+                                <p className="mt-1 text-lm text-[#c8c3c3]">
                                     Should be careful what you Upload NFT.
                                 </p>
                             </div>
@@ -335,9 +335,9 @@ const NftCreate: NextPage = () => {
                                         <button
                                             onClick={uploadMetadata}
                                             type="button"
-                                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-active focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-active"
+                                            className="button inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-active focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-active"
                                         >
-                                            List
+                                            Upload
                                         </button>
                                     </div>
                                 </div>
