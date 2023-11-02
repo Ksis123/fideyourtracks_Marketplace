@@ -21,10 +21,10 @@ export default function Navbar() {
     const { network } = useNetwork();
 
     return (
-        <Disclosure as="nav" className="bg-[#1b1919] drop-shadow-2xl">
+        <Disclosure as="nav" className="bg-[#1b1919] drop-shadow-2xl ">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto  ">
+                    <div className="max-w-[94vw] mx-auto  ">
                         <div className="relative flex items-center justify-between h-20 ">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-[#5b392af3] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -37,33 +37,33 @@ export default function Navbar() {
                                 </Disclosure.Button>
                             </div>
                             <div className="flex-1 items-center justify-center">
-                                <div className="pl-[12rem]flex-shrink-0 flex items-center font-bold">
+                                <div className="flex-shrink-0 flex items-center  text-3xl">
                                     <img
                                         className="hidden lg:block h-10 w-auto"
                                         src="/images/logofyt2.png"
                                         alt="Workflow"
                                     />
-                                    <h1 className='text-3xl ml-3 font-bold drop-shadow-lg' onClick={() => {
-                                        window.location.href = "http://localhost:3000/"
+                                    <h1 className=' ml-3  drop-shadow-lg' onClick={() => {
+                                        window.location.href = "http://localhost:3005/"
                                     }}>
-                                        <b className='text-primary hover:text-[#ff983d]'> Fide</b><b className='text-[#f4efeb]'> yourtracks</b>
+                                        <b className='text-primary hover:text-[#ff983d]  '> Fide</b><b className='text-[#f4efeb] '> yourtracks</b>
+                                   
                                     </h1>
                                 </div>
-
                             </div>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <div className="hidden sm:block sm:ml-10 pr-[1rem]">
-                                    <div className="flex space-x-4">
+                            <div className=" absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                                <div className="hidden sm:block sm:ml-10 pr-[1rem]">   
+                                    <div className="flex space-x-4  ">
                                         {navigation.map((item) => (
                                             <ActiveLink
                                                 key={item.name}
                                                 href={item.href}
-                                                activeClass="bg-[#3b2e26] text-primary hover:bg-primary hover:text-secondary"
+                                                activeClass=" bg-[#3b2e26] text-primary hover:bg-primary hover:text-secondary text-[20px]"
                                             >
                                                 <a
                                                     className={classNames(
-                                                        item.current ? ' text-[#ff6d38]' : 'text-gray-300  hover:text-white',
-                                                        'px-3 py-2 rounded-md text-sm font-medium'
+                                                        item.current ? ' text-[#ff6d38]' : 'text-gray-300  hover:text-white ',
+                                                        'px-3 py-2 rounded-md text-[20px]'
                                                     )}
                                                     aria-current={item.current ? 'page' : undefined}
                                                 >
@@ -73,8 +73,8 @@ export default function Navbar() {
                                         ))}
                                     </div>
                                 </div>
-                                <div className="text-gray-300 self-center mr-2 ">
-                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-secondary text-primary">
+                                <div className="text-[20px] text-gray-300 self-center mr-2 ml-5">
+                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[20px] font-semibold bg-secondary text-primary">
                                         <svg className="-ml-0.5 mr-1.5 h-2 w-2 text-primary" fill="currentColor" viewBox="0 0 8 8">
                                             <circle cx={4} cy={4} r={3} />
                                         </svg>
@@ -104,7 +104,7 @@ export default function Navbar() {
                                     as="a"
                                     href={item.href}
                                     className={classNames(
-                                        item.current ? 'bg-active text-white' : 'text-gray-300 hover:bg-active hover:text-white',
+                                        item.current ? 'bg-active text-white ' : 'text-gray-300 hover:bg-active hover:text-white',
                                         'block px-3 py-2 rounded-md text-base font-medium'
                                     )}
                                     aria-current={item.current ? 'page' : undefined}

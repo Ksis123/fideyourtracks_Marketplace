@@ -2,9 +2,17 @@ import { v4 as uuidv4 } from "uuid";
 import { FileReq } from "@_types/nft";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "next-iron-session";
-import { addressCheckMiddleware, pinataApiKey, pinataSecretApiKey, withSession } from "./utills";
+import { addressCheckMiddleware, pinataApiKey, pinataSecretApiKey, withSession } from "./util";
 import FormData from "form-data";
 import axios from "axios";
+
+export const config = {
+    api: {
+      bodyParser: {
+        sizeLimit: '50mb', //  can specify more data if needed
+      },
+    },
+  }
 
 export default withSession(async (
     req: NextApiRequest & { session: Session },
@@ -33,6 +41,14 @@ export default withSession(async (
             filename: fileName + "-" + uuidv4()
         }
         );
+
+        // const fileRes = await axios.post("httpps://api.pinata.cloud/pinning/pinFileToIPFS", formData, {       
+        //     maxBodyLength: Infinity,       
+        //     headers: {         
+        //         "Content-Type": `multipart/form-data; boundary=${formData.getBoundary()}`,
+        //          Authorization: 'Bearer ' + process.env.PINATA_JWT       
+        //     }     
+        // });
 
         const fileRes = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
             maxBodyLength: Infinity,

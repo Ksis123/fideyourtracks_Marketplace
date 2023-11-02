@@ -33,7 +33,7 @@ contract NftMarket is ERC721URIStorage, Ownable {
         bool isListed
     );
 
-    constructor() ERC721("CreaturesNFT", "CNFT") {}
+    constructor() ERC721("AudioNFT", "CNFT") {}
 
     function setListingPrice(uint newPrice) external onlyOwner {
         require(newPrice > 0, "Price must be at least 1 wei");

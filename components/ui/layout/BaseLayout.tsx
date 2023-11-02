@@ -8,7 +8,7 @@ const BaseLayout: FunctionComponent = ({ children }) => {
       <div className="drop-shadow-2xl">
         <Navbar />
       </div>
-      <div className="py-16 them overflow-hidden min-h-screen">
+      <div className="py-16 them  min-h-screen">
         <div className="max-w-7xl mx-auto">
           {children}
         </div>

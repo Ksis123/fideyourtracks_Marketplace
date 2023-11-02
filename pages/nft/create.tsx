@@ -10,10 +10,16 @@ import { ethers } from 'ethers';
 import { toast } from "react-toastify";
 import ReactAudioPlayer from "react-audio-player";
 
+import { useNetwork } from '@hooks/web3';
+import { ExclamationIcon } from '@heroicons/react/solid';
+
 
 const ALLOWED_FIELDS = ["name", "description", "track"];
 
+
 const NftCreate: NextPage = () => {
+    const { network } = useNetwork();
+
     const { ethereum, contract } = useWeb3();
     const [nftURI, setNftURI] = useState("");
     const [price, setPrice] = useState("");
@@ -22,7 +28,6 @@ const NftCreate: NextPage = () => {
         name: "",
         description: "",
         track: "",
-
     });
 
     const getSignedData = async () => {
@@ -43,7 +48,6 @@ const NftCreate: NextPage = () => {
             console.error("Select a file");
             return;
         }
-
         const file = e.target.files[0];
         const buffer = await file.arrayBuffer();
         const bytes = new Uint8Array(buffer);
@@ -51,7 +55,8 @@ const NftCreate: NextPage = () => {
         try {
             const { signedData, account } = await getSignedData();
 
-            const promise = axios.post("/api/verify-image", {
+            const promise = axios.post("/api/verify_track", {
+
                 address: account,
                 signature: signedData,
                 bytes,
@@ -61,9 +66,9 @@ const NftCreate: NextPage = () => {
 
             const res = await toast.promise(
                 promise, {
-                pending: "Uploading image",
-                success: "Image uploaded",
-                error: "Image upload error"
+                pending: "Uploading Audio",
+                success: "Audio uploaded",
+                error: "Audio upload error"
             }
             )
 
@@ -110,7 +115,9 @@ const NftCreate: NextPage = () => {
 
     const createNft = async () => {
         try {
-            const nftRes = await axios.get(nftURI);
+            const nftRes = await axios.get(nftURI, {
+                headers: { "Accept": "text/plain" }
+            });
             const content = nftRes.data;
 
             Object.keys(content).forEach(key => {
@@ -129,7 +136,7 @@ const NftCreate: NextPage = () => {
             await toast.promise(
                 tx!.wait(), {
                 pending: "Uploading metadata",
-                success: "Metadata uploaded",
+                success: "Metadata uploaded Successfull",
                 error: "Metadata upload error"
             }
             );
@@ -137,6 +144,31 @@ const NftCreate: NextPage = () => {
         } catch (e: any) {
             console.error(e.message);
         }
+    }
+
+    if (!network.isConnectedToNetwork) {
+        return (
+            <BaseLayout>
+                <div className="rounded-md bg-yellow-50 p-4 mt-10">
+                    <div className="flex">
+                        <div className="flex-shrink-0">
+                            <ExclamationIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
+                        </div>
+                        <div className="ml-3">
+                            <h3 className="text-sm font-medium text-yellow-800">Attention needed</h3>
+                            <div className="mt-2 text-sm text-yellow-700">
+                                <p>
+                                    {network.isLoading ?
+                                        "Loading..." :
+                                        `Connect to ${network.targetNetwork}`
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </BaseLayout>
+        )
     }
 
     return (
@@ -176,9 +208,9 @@ const NftCreate: NextPage = () => {
                             <form>
                                 <div className="shadow sm:rounded-md sm:overflow-hidden">
                                     {hasURI &&
-                                        <div className="px-4 py-5 bg-[#ffffff] space-y-6 sm:p-6">
+                                        <div className="px-4 py-5 bg-[#8d888129] space-y-6 sm:p-6">
                                             <div>
-                                                <label htmlFor="uri" className="block text-sm font-medium text-gray-700">
+                                                <label htmlFor="uri" className="block text-sm font-medium text-secondary">
                                                     URI Link
                                                 </label>
                                                 <div className="mt-1 flex rounded-md shadow-sm">
@@ -218,6 +250,9 @@ const NftCreate: NextPage = () => {
                                                     type="number"
                                                     name="price"
                                                     id="price"
+                                                    step="0.1"
+                                                    min='0'
+                                                    max='20'
                                                     className="focus:ring-primary focus:border-active flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                                                     placeholder="0.8"
                                                 />
@@ -228,7 +263,6 @@ const NftCreate: NextPage = () => {
                                         <button
                                             type="button"
                                             onClick={createNft}
-
                                             className="button inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-active focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                                         >
                                             List
@@ -251,10 +285,10 @@ const NftCreate: NextPage = () => {
                         <div className="mt-5 md:mt-0 md:col-span-2">
                             <form>
                                 <div className="shadow sm:rounded-md sm:overflow-hidden">
-                                    <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+                                    <div className="px-4 py-5 bg-[#cac2c23e] space-y-6 sm:p-6">
                                         <div>
-                                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                                                Name
+                                            <label htmlFor="name" className="block text-sm font-medium text-secondary">
+                                                NFT Name
                                             </label>
                                             <div className="mt-1 flex rounded-md shadow-sm">
                                                 <input
@@ -264,12 +298,12 @@ const NftCreate: NextPage = () => {
                                                     name="name"
                                                     id="name"
                                                     className="focus:ring-primary focus:border-active flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
-                                                    placeholder="My Nice NFT"
+                                                    placeholder="Enter your NFT name"
                                                 />
                                             </div>
                                         </div>
                                         <div>
-                                            <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                                            <label htmlFor="description" className="block text-sm font-medium text-secondary">
                                                 Description
                                             </label>
                                             <div className="mt-1">
@@ -283,42 +317,43 @@ const NftCreate: NextPage = () => {
                                                     placeholder="Some NFT description..."
                                                 />
                                             </div>
-                                            <p className="mt-2 text-sm text-gray-500">
-                                                enter description of NFT
+                                            <p className="mt-2 text-sm text-[#ffffff84]">
+                                                Please input description about your NFT
                                             </p>
                                         </div>
-                                        {/* Has Image? */}
                                         {nftMeta.track ?
-                                            <ReactAudioPlayer src={nftMeta.track} controls /> :
+                                            <ReactAudioPlayer
+                                                controlsList={"nodownload"}
+                                                src={nftMeta.track} controls
+                                            />
+                                            :
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700">Track</label>
+                                                <label className="block text-sm font-medium text-secondary">Audio File</label>
                                                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                                     <div className="space-y-1 text-center">
-
                                                         <div className="flex text-sm text-gray-600">
                                                             <label
                                                                 htmlFor="file-upload"
-                                                                className="relative cursor-pointer bg-white rounded-md font-medium text-active hover:text-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary"
+                                                                className="relative cursor-pointer  rounded-md font-medium text-active hover:text-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary"
                                                             >
                                                                 <span>Upload Audio file</span>
                                                                 <input
+                                                                    onChange={handleaudio}
                                                                     id="file-upload"
                                                                     name="file-upload"
-                                                                    onChange={handleaudio}
                                                                     type="file"
                                                                     className="sr-only"
                                                                 />
                                                             </label>
-                                                            <p className="pl-1">or drag and drop</p>
+                                                            <p className="pl-1 text-white">or drag and drop</p>
                                                         </div>
-                                                        <p className="text-xs text-gray-500">MP3 up to 10MB</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         }
 
                                     </div>
-                                    <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                    <div className="px-4 py-3 bg-[#cac2c23e] text-right sm:px-6">
                                         <button
                                             onClick={uploadMetadata}
                                             type="button"
@@ -336,4 +371,5 @@ const NftCreate: NextPage = () => {
         </BaseLayout>
     )
 }
+
 export default NftCreate
