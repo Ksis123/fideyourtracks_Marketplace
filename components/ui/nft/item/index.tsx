@@ -40,8 +40,8 @@ const NftItem: FunctionComponent<NftItemProps> = ({ item, buyNft }) => {
               <dd className="order-1 text-[22px] font-extrabold ">
                 <div className="flex justify-center items-center text-[#ffffff]">
                   {item.price}
-                  <img className="h-10 drop-shadow-2xl " src="/images/small-eth.webp" alt="ether icon" />
-                  <h6 className="text-[#bbbac6] drop-shadow-2xl">ETH</h6>
+                  <h6 className="text-[#bbbac6] drop-shadow-2xl ml-2">ETH</h6>
+                  <img className="h-12 drop-shadow-2xl " src="/images/small-eth.webp" alt="ether icon" />
                 </div>
               </dd>
             </div>

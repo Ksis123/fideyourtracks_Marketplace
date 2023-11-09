@@ -48,7 +48,7 @@ const Walletbar: FunctionComponent<WalletbarProps> = ({
                         {() => (
                             <button
                                 disabled={true}
-                                className="text-[22px] disabled:text-gray-500 text-xs block px-4 pt-6 text-gray-700">
+                                className="text-[20px] disabled:text-gray-500  block px-4 pt-6 text-gray-700">
                                 {`${account[0]}${account[1]}${account[2]}${account[3]}${account[4]}${account[5]}${account[6]}....${account.slice(-5)}`}
                             </button>
                         )}
@@ -62,7 +62,6 @@ const Walletbar: FunctionComponent<WalletbarProps> = ({
                                     My collection
                                 </a>
                             </Link>
-
                         )}
                     </Menu.Item>
                 </Menu.Items>
