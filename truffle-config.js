@@ -1,3 +1,6 @@
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const keys = require("./key.json");
+
 
 module.exports = {
   contracts_build_directory: "./public/contracts",
@@ -7,6 +10,18 @@ module.exports = {
      port: 7545,
      network_id: "*",
     },
+    sepolia: {
+      provider: () => 
+        new HDWalletProvider(
+          keys.DEPLOYER_KEY,
+          keys.INFURA_SEPOLIA_URL
+        ),
+      network_id: 3,
+      gas: 5500000,
+      gasPrice: 20000000000,
+      confirmations: 2,
+      timeoutBlocks: 200
+    }
 
   },
   compilers: {

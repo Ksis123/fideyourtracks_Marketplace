@@ -10,17 +10,10 @@ const Home: NextPage = () => {
         <div>
             <BaseLayout>
                 <div className="relative">
-                    <div className="text-center">
-                        <h1 className="text-5xl tracking-tight font-bold text-primary md:text-6xl lg:texr-7xl xl:text-[5rem]">Audio
-                            <span className='italic text-[#c7c5c2] hover:text-[#ff983d] '> NFTs Marketplace</span>
-                        </h1>
-                        <p className=" max-w-2xl mx-auto text-xl text-[#ffffff57] sm:mt-4">
-                            Welcome to get unlimited ownership !
-                        </p>
-                    </div>
+
                     {network.isConnectedToNetwork ?
                         <NftList /> :
-                        <div className="rounded-md bg-yellow-50 p-4 mt-10">
+                        <div className="rounded-md bg-yellow-50 p-4 mt-10 ">
                             <div className="flex">
                                 <div className="flex-shrink-0">
                                     <ExclamationIcon className="h-5 w-5 text-active" aria-hidden="true" />

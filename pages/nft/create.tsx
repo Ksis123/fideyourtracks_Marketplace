@@ -119,6 +119,8 @@ const NftCreate: NextPage = () => {
                 headers: { "Accept": "text/plain" }
             });
             const content = nftRes.data;
+            // const nftRes = await fetch(`api/fetch?fetchUrl=${nftURI}`);
+            // const content = await nftRes.json();
 
             Object.keys(content).forEach(key => {
                 if (!ALLOWED_FIELDS.includes(key)) {
@@ -130,8 +132,7 @@ const NftCreate: NextPage = () => {
                 nftURI,
                 ethers.utils.parseEther(price), {
                 value: ethers.utils.parseEther(0.025.toString())
-            }
-            );
+            });
 
             await toast.promise(
                 tx!.wait(), {

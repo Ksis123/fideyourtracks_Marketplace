@@ -43,11 +43,8 @@ export default function Navbar() {
                                         src="/images/logofyt2.png"
                                         alt="Workflow"
                                     />
-                                    <h1 className=' ml-3  drop-shadow-lg' onClick={() => {
-                                        window.location.href = "http://localhost:3005/"
-                                    }}>
+                                    <h1 className='invisible sm:visible ml-3  drop-shadow-lg' >
                                         <b className='text-primary hover:text-[#ff983d]  '> Fide</b><b className='text-[#f4efeb] '> yourtracks</b>
-                                   
                                     </h1>
                                 </div>
                             </div>
